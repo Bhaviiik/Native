@@ -17,12 +17,7 @@ const Home = ({ navigation }) => {
    return (
       <View style={Styles.main}>
          <View style={Styles.header}>
-            <TouchableOpacity>
-               <Text style={Styles.text1}>Home</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-               <Text style={Styles.text1}>Dashboard</Text>
-            </TouchableOpacity>
+            <Text style={Styles.text1}>This is Dashboard</Text>
          </View>
       </View>
    );

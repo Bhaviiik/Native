@@ -3,7 +3,9 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Home from '../Modules/Home';
+import SignUp from '../Modules/SignUp';
+import Dashboard from '../Modules/Dashboard';
+import SignIn from '../Modules/SignIn';
 
 
 const Routes = () => {
@@ -11,7 +13,9 @@ const Routes = () => {
    return (
       <NavigationContainer>
          <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="Dashboard" component={Dashboard} />
+            <Stack.Screen name="SignIn" component={SignIn} />
          </Stack.Navigator>
       </NavigationContainer>
    );
