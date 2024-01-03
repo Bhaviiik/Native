@@ -70,6 +70,21 @@ const Styles = StyleSheet.create({
       fontSize: 16,
       color: '#333',
    },
+   checkCont: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignContent:'center',
+   },
+   checkbox: {
+      flexDirection: 'row',
+      alignContent:'center',
+      justifyContent: 'center',
+   },
+   checkText:{
+      alignSelf:'center',
+      color: Colors.black,
+      fontSize: byFont(6),
+   },
 });
 
 export default Styles;

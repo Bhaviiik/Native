@@ -9,7 +9,8 @@ import {
    TextInput,
    StatusBar,
 } from 'react-native';
-import { RadioButton, Checkbox } from 'react-native-paper';
+import CheckBox from '@react-native-community/checkbox';
+import { RadioButton } from 'react-native-paper';
 
 import Styles from '../Styles/Styles';
 import { Icons, Colors } from '../Utils/Constants';
@@ -17,7 +18,7 @@ import { Icons, Colors } from '../Utils/Constants';
 
 const Home = ({ navigation }) => {
    const [selectedValue, setSelectedValue] = useState('option1');
-   const [checked, setChecked] = useState(false);
+   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
    return (
       <View style={Styles.main}>
@@ -104,16 +105,48 @@ const Home = ({ navigation }) => {
             </View>
             <View>
                <Text style={Styles.t1}>How did you hear about this?</Text>
-               {/* <Checkbox
-                  status={checked ? 'checked' : 'unchecked'}
-                  onPress={() => { setChecked(!checked); }}
-               /> */}
+               <View style={Styles.checkCont}>
+                  <View style={Styles.checkbox}>
+                     <CheckBox
+                        onCheckColor="red"
+                        onFillColor="red"
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                     />
+                     <Text style={Styles.checkText}>LinkedIn</Text>
+                  </View>
+                  <View style={Styles.checkbox}>
+                     <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                     />
+                     <Text style={Styles.checkText}>Friends</Text>
+                  </View>
+                  <View style={Styles.checkbox}>
+                     <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                     />
+                     <Text style={Styles.checkText}>Job Portal</Text>
+                  </View>
+                  <View style={Styles.checkbox}>
+                     <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                     />
+                     <Text style={Styles.checkText}>Others</Text>
+                  </View>
+               </View>
             </View>
          </View>
 
 
 
-         <View style={Styles.nav}>
+         <View style={{ marginTop: 100 }}>
             <TouchableOpacity
                onPress={() => navigation.navigate('SignIn')}
             >
