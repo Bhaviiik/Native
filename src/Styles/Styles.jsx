@@ -70,7 +70,7 @@ const Styles = StyleSheet.create({
       fontSize: 16,
       color: '#333',
    },
-   checkCont: {
+   checkContMain: {
       flexDirection: 'row',
       justifyContent: 'center',
       alignContent:'center',
@@ -84,6 +84,51 @@ const Styles = StyleSheet.create({
       alignSelf:'center',
       color: Colors.black,
       fontSize: byFont(6),
+   },
+   // Dropdown
+   dropdownCont:{
+      alignContent:'center',
+      justifyContent: 'center',
+   },
+   dropdown: {
+      height: byHeight(5),
+      width:byWidth(35),
+      borderBottomColor: 'gray',
+      borderWidth: 0.8,
+    },
+    placeholderStyle: {
+      fontSize: byFont(6),
+   },
+   selectedTextStyle: {
+      fontSize: byFont(6),
+      marginLeft:byWidth(4),
+    },
+    inputSearchStyle: {
+      height: 40,
+      fontSize: byFont(5),
+    },
+    iconStyle: {
+      width: byWidth(4),
+      height: byWidth(5),
+    },
+   //  Save Button
+   saveCont:{
+      height: byHeight(5),
+      width:byWidth(30),
+      justifyContent: 'center',
+      alignItems:'center',
+   },
+   saveButton: {
+      height: byHeight(5),
+      width:byWidth(30),
+      justifyContent: 'center',
+      alignItems:'center',
+      borderRadius:25,
+      backgroundColor:Colors.blue,
+   },
+   saveText:{
+      fontSize:byFont(7),
+      color:Colors.white,
    },
 });
 

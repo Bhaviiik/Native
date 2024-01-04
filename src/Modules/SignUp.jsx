@@ -1,24 +1,45 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
-   Image,
    Text,
    TouchableOpacity,
    View,
-   ScrollView,
    TextInput,
    StatusBar,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { RadioButton } from 'react-native-paper';
+import { Dropdown } from 'react-native-element-dropdown';
 
 import Styles from '../Styles/Styles';
 import { Icons, Colors } from '../Utils/Constants';
+import { byHeight, byWidth } from '../Utils/Functions';
 
+const initialState = {
+   Linkedin: false,
+   Friends: false,
+   JobPortal: false,
+   Others: false,
+};
+
+const data = [
+   { label: 'Mumbai', value: '1' },
+   { label: 'Pune', value: '2' },
+   { label: 'Ahmedabad', value: '3' },
+];
+
+const data1 = [
+   { label: 'Gujarat', value: '1' },
+   { label: 'Maharashtra', value: '2' },
+   { label: 'Karnataka', value: '3' },
+];
 
 const Home = ({ navigation }) => {
    const [selectedValue, setSelectedValue] = useState('option1');
+   const [state, setState] = useState(initialState);
    const [toggleCheckBox, setToggleCheckBox] = useState(false);
+   const [value, setValue] = useState(null);
 
    return (
       <View style={Styles.main}>
@@ -57,6 +78,15 @@ const Home = ({ navigation }) => {
                   style={Styles.textInput}
                   keyboardType="number-pad"
                   placeholder="type number..."
+               />
+            </View>
+            {/* Password */}
+            <View>
+               <Text style={Styles.t1}>Password</Text>
+               <TextInput
+                  style={Styles.textInput}
+                  secureTextEntry={true}
+                  placeholder="type here..."
                />
             </View>
             {/* Gender */}
@@ -104,49 +134,104 @@ const Home = ({ navigation }) => {
                </View>
             </View>
             <View>
-               <Text style={Styles.t1}>How did you hear about this?</Text>
-               <View style={Styles.checkCont}>
+               <View style={{ marginLeft: byWidth(2) }}>
+                  <Text style={Styles.t1}>How did you hear about this?</Text>
+               </View>
+               <View style={Styles.checkContMain}>
                   <View style={Styles.checkbox}>
                      <CheckBox
-                        onCheckColor="red"
-                        onFillColor="red"
                         disabled={false}
-                        value={toggleCheckBox}
-                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        value={state.Linkedin}
+                        onValueChange={(value) => setState({ ...state, Linkedin: value })}
                      />
                      <Text style={Styles.checkText}>LinkedIn</Text>
                   </View>
                   <View style={Styles.checkbox}>
                      <CheckBox
                         disabled={false}
-                        value={toggleCheckBox}
-                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        value={state.Friends}
+                        onValueChange={(value) => setState({ ...state, Friends: value })}
                      />
                      <Text style={Styles.checkText}>Friends</Text>
                   </View>
+
                   <View style={Styles.checkbox}>
                      <CheckBox
                         disabled={false}
-                        value={toggleCheckBox}
-                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        value={state.JobPortal}
+                        onValueChange={(value) => setState({ ...state, JobPortal: value })}
                      />
                      <Text style={Styles.checkText}>Job Portal</Text>
                   </View>
                   <View style={Styles.checkbox}>
                      <CheckBox
                         disabled={false}
-                        value={toggleCheckBox}
-                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                        value={state.Others}
+                        onValueChange={(value) => setState({ ...state, Others: value })}
                      />
                      <Text style={Styles.checkText}>Others</Text>
                   </View>
                </View>
             </View>
+            {/* City */}
+            <View style={Styles.dropdownCont}>
+               <View>
+                  <Text style={Styles.t1}>City</Text>
+               </View>
+               <Dropdown
+                  style={Styles.dropdown}
+                  placeholderStyle={Styles.placeholderStyle}
+                  selectedTextStyle={Styles.selectedTextStyle}
+                  inputSearchStyle={Styles.inputSearchStyle}
+                  iconStyle={Styles.iconStyle}
+                  data={data}
+                  search={false}
+                  maxHeight={200}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Select item"
+                  searchPlaceholder="Search..."
+                  value={value}
+                  onChange={item => {
+                     setValue(item.value);
+                  }}
+               />
+            </View>
+            {/* State */}
+            <View style={Styles.dropdownCont}>
+               <View>
+                  <Text style={Styles.t1}>State</Text>
+               </View>
+               <Dropdown
+                  style={Styles.dropdown}
+                  placeholderStyle={Styles.placeholderStyle}
+                  selectedTextStyle={Styles.selectedTextStyle}
+                  inputSearchStyle={Styles.inputSearchStyle}
+                  iconStyle={Styles.iconStyle}
+                  data={data1}
+                  search
+                  maxHeight={200}
+                  labelField="label"
+                  valueField="value"
+                  placeholder="Select item"
+                  searchPlaceholder="Search..."
+                  value={value}
+                  onChange={item => {
+                     setValue(item.value);
+                  }}
+               />
+            </View>
+            <View style={Styles.saveCont}>
+               <TouchableOpacity
+                  style={Styles.saveButton}
+               // onPress={() => navigation.navigate('Dashboard')}
+               >
+                  <Text style={Styles.saveText}>Sign-Up</Text>
+               </TouchableOpacity>
+            </View>
          </View>
-
-
-
-         <View style={{ marginTop: 100 }}>
+         {/* Signin Option */}
+         <View>
             <TouchableOpacity
                onPress={() => navigation.navigate('SignIn')}
             >
@@ -160,7 +245,6 @@ const Home = ({ navigation }) => {
          </View>
       </View>
    );
-
 };
 
 export default Home;
