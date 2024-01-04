@@ -1,22 +1,20 @@
-// import bag from '../Icons/bag.png';
-// import search from '../Icons/search.png';
-// import heart from '../Icons/heart.png';
-// import liked from '../Icons/liked.png';
-// import darkbag from '../Icons/darkbag.png';
-// import back from '../Icons/back.png';
-// import star from '../Icons/star.png';
+import edit from '../Icons/edit.png';
+import Delete from '../Icons/delete.png';
 
 
-// export const Icons = {
-//    bag, search, heart, liked, darkbag, back, star,
-// };
+export const Icons = {
+   edit, Delete,
+};
 
 export const Colors = {
    white: '#FFFFFF',
-   blue: '#2A4BA0',
-   blue1: '#2A4BA095',
+   blue: '#490B3D',
+   blue1: '#490B3D40',
+   blue2: '#490B3D95',
    black: '#000000',
+   black1: '#00000080',
    shade1: '#6C63FF',
    shade2: '#9292FD',
    shadow: '#00000050',
+   shadow1: '#00000080',
 };

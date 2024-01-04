@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
@@ -7,6 +6,7 @@ import {
    View,
    TextInput,
    StatusBar,
+   FlatList,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { RadioButton } from 'react-native-paper';
@@ -25,14 +25,14 @@ const initialState = {
 
 const data = [
    { label: 'Mumbai', value: '1' },
-   { label: 'Pune', value: '2' },
+   { label: 'Pune', value: '1' },
    { label: 'Ahmedabad', value: '3' },
 ];
 
 const data1 = [
-   { label: 'Gujarat', value: '1' },
-   { label: 'Maharashtra', value: '2' },
-   { label: 'Karnataka', value: '3' },
+   { label: 'Maharashtra', value: '1' },
+   { label: 'Karnataka', value: '0' },
+   { label: 'Gujarat', value: '3' },
 ];
 
 const Home = ({ navigation }) => {
@@ -52,7 +52,6 @@ const Home = ({ navigation }) => {
             <Text style={Styles.heading}>Get Started</Text>
             <Text style={Styles.heading1}>By creating an account.</Text>
          </View>
-
          <View style={Styles.form}>
             {/* Name */}
             <View>
@@ -99,7 +98,7 @@ const Home = ({ navigation }) => {
                         status={selectedValue === 'option1' ?
                            'checked' : 'unchecked'}
                         onPress={() => setSelectedValue('option1')}
-                        color="#007BFF"
+                        color={Colors.blue}
                      />
                      <Text style={Styles.radioLabel}>
                         Male
@@ -112,7 +111,7 @@ const Home = ({ navigation }) => {
                         status={selectedValue === 'option2' ?
                            'checked' : 'unchecked'}
                         onPress={() => setSelectedValue('option2')}
-                        color="#007BFF"
+                        color={Colors.blue}
                      />
                      <Text style={Styles.radioLabel}>
                         Female
@@ -125,7 +124,7 @@ const Home = ({ navigation }) => {
                         status={selectedValue === 'option3' ?
                            'checked' : 'unchecked'}
                         onPress={() => setSelectedValue('option3')}
-                        color="#007BFF"
+                        color={Colors.blue}
                      />
                      <Text style={Styles.radioLabel}>
                         Others
@@ -133,7 +132,7 @@ const Home = ({ navigation }) => {
                   </View>
                </View>
             </View>
-            <View>
+            <View style={{ marginVertical: byHeight(1) }}>
                <View style={{ marginLeft: byWidth(2) }}>
                   <Text style={Styles.t1}>How did you hear about this?</Text>
                </View>
@@ -142,6 +141,7 @@ const Home = ({ navigation }) => {
                      <CheckBox
                         disabled={false}
                         value={state.Linkedin}
+                        tintColors={{ true: Colors.blue, false: Colors.blue }}
                         onValueChange={(value) => setState({ ...state, Linkedin: value })}
                      />
                      <Text style={Styles.checkText}>LinkedIn</Text>
@@ -150,6 +150,7 @@ const Home = ({ navigation }) => {
                      <CheckBox
                         disabled={false}
                         value={state.Friends}
+                        tintColors={{ true: Colors.blue, false: Colors.blue }}
                         onValueChange={(value) => setState({ ...state, Friends: value })}
                      />
                      <Text style={Styles.checkText}>Friends</Text>
@@ -159,6 +160,7 @@ const Home = ({ navigation }) => {
                      <CheckBox
                         disabled={false}
                         value={state.JobPortal}
+                        tintColors={{ true: Colors.blue, false: Colors.blue }}
                         onValueChange={(value) => setState({ ...state, JobPortal: value })}
                      />
                      <Text style={Styles.checkText}>Job Portal</Text>
@@ -167,60 +169,64 @@ const Home = ({ navigation }) => {
                      <CheckBox
                         disabled={false}
                         value={state.Others}
+                        tintColors={{ true: Colors.blue, false: Colors.blue }}
                         onValueChange={(value) => setState({ ...state, Others: value })}
                      />
                      <Text style={Styles.checkText}>Others</Text>
                   </View>
                </View>
             </View>
-            {/* City */}
-            <View style={Styles.dropdownCont}>
-               <View>
-                  <Text style={Styles.t1}>City</Text>
+            <View style={Styles.dropdownContMain}>
+               {/* City */}
+               <View style={Styles.dropdownCont}>
+                  <View>
+                     <Text style={Styles.t1}>City</Text>
+                  </View>
+                  <Dropdown
+                     style={Styles.dropdown}
+                     placeholderStyle={Styles.placeholderStyle}
+                     selectedTextStyle={Styles.selectedTextStyle}
+                     inputSearchStyle={Styles.inputSearchStyle}
+                     iconStyle={Styles.iconStyle}
+                     data={data}
+                     search={false}
+                     maxHeight={200}
+                     labelField="label"
+                     valueField="value"
+                     placeholder="Select item"
+                     searchPlaceholder="Search..."
+                     value={value}
+                     onChange={item => {
+                        setValue(item.value);
+                     }}
+                  />
                </View>
-               <Dropdown
-                  style={Styles.dropdown}
-                  placeholderStyle={Styles.placeholderStyle}
-                  selectedTextStyle={Styles.selectedTextStyle}
-                  inputSearchStyle={Styles.inputSearchStyle}
-                  iconStyle={Styles.iconStyle}
-                  data={data}
-                  search={false}
-                  maxHeight={200}
-                  labelField="label"
-                  valueField="value"
-                  placeholder="Select item"
-                  searchPlaceholder="Search..."
-                  value={value}
-                  onChange={item => {
-                     setValue(item.value);
-                  }}
-               />
-            </View>
-            {/* State */}
-            <View style={Styles.dropdownCont}>
-               <View>
-                  <Text style={Styles.t1}>State</Text>
+               {/* State */}
+               <View style={Styles.dropdownCont}>
+                  <View>
+                     <Text style={Styles.t1}>State</Text>
+                  </View>
+                  <Dropdown
+                     style={Styles.dropdown}
+                     placeholderStyle={Styles.placeholderStyle}
+                     selectedTextStyle={Styles.selectedTextStyle}
+                     inputSearchStyle={Styles.inputSearchStyle}
+                     iconStyle={Styles.iconStyle}
+                     data={data1}
+                     search
+                     maxHeight={200}
+                     labelField="label"
+                     valueField="value"
+                     placeholder="Select item"
+                     searchPlaceholder="Search..."
+                     value={value}
+                     onChange={item => {
+                        setValue(item.value);
+                     }}
+                  />
                </View>
-               <Dropdown
-                  style={Styles.dropdown}
-                  placeholderStyle={Styles.placeholderStyle}
-                  selectedTextStyle={Styles.selectedTextStyle}
-                  inputSearchStyle={Styles.inputSearchStyle}
-                  iconStyle={Styles.iconStyle}
-                  data={data1}
-                  search
-                  maxHeight={200}
-                  labelField="label"
-                  valueField="value"
-                  placeholder="Select item"
-                  searchPlaceholder="Search..."
-                  value={value}
-                  onChange={item => {
-                     setValue(item.value);
-                  }}
-               />
             </View>
+
             <View style={Styles.saveCont}>
                <TouchableOpacity
                   style={Styles.saveButton}
@@ -231,12 +237,15 @@ const Home = ({ navigation }) => {
             </View>
          </View>
          {/* Signin Option */}
-         <View>
+         <View style={Styles.signInCont}>
+            <Text style={Styles.signIntext}>Alread Have An Account? </Text>
             <TouchableOpacity
                onPress={() => navigation.navigate('SignIn')}
             >
-               <Text style={Styles.text}>Go to Sign-In</Text>
+               <Text style={Styles.text}>Sign-In</Text>
             </TouchableOpacity>
+         </View>
+         <View>
             <TouchableOpacity
                onPress={() => navigation.navigate('Dashboard')}
             >
